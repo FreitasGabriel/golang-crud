@@ -43,6 +43,7 @@ func getOutPutLogs() string {
 	return output
 }
 
+// essa funcao serve para retornar o level dos logs
 func getLevelLogs() zapcore.Level {
 	switch strings.ToLower(strings.TrimSpace(os.Getenv(LOG_LEVEL))) {
 	case "info":
