@@ -36,11 +36,12 @@ func (uc *userControlerInterface) CreateUser(c *gin.Context) {
 
 	domainResult, err := uc.service.CreateUser(domain)
 	if err != nil {
+		logger.Error("error trying to call CreateUser service", err, zap.String("journey", "createUser"))
 		c.JSON(err.Code, err)
 		return
 	}
 
-	logger.Info("user created successfully",
+	logger.Info("CreateUser controller executed successfully",
 		zap.String("journey", "createUser"),
 	)
 	c.JSON(http.StatusOK, view.ConvertDomainToResponse(domainResult))

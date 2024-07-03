@@ -9,11 +9,3 @@ type UserEntity struct {
 	Name     string             `bson:"name"`
 	Age      int                `bson:"age"`
 }
-
-// func (ud *userDomain) GetJSONValue() (string, error) {
-// 	b, err := json.Marshal(ud)
-// 	if err != nil {
-// 		return "", nil
-// 	}
-// 	return string(b), nil
-// }
