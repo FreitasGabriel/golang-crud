@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/FreitasGabriel/golang-crud/src/configuration/database/mongodb"
+	configuration "github.com/FreitasGabriel/golang-crud/src/configuration/dependencies"
 	"github.com/FreitasGabriel/golang-crud/src/configuration/logger"
 	"github.com/FreitasGabriel/golang-crud/src/controller/routes"
 	"github.com/gin-gonic/gin"
@@ -24,7 +25,7 @@ func main() {
 		return
 	}
 
-	userController := initDependencies(database)
+	userController := configuration.InitDependencies(database)
 
 	router := gin.Default()
 	routes.InitRoutes(&router.RouterGroup, userController)

@@ -1,4 +1,4 @@
-package main
+package configuration
 
 import (
 	"github.com/FreitasGabriel/golang-crud/src/controller"
@@ -7,8 +7,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func initDependencies(database *mongo.Database) controller.UserControllerInterface {
-
+func InitDependencies(database *mongo.Database) controller.UserControllerInterface {
 	repo := repository.NewUserRepository(database)
 	service := service.NewUserDomainService(repo)
 	return controller.NewUserControllerInterface(service)
