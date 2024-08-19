@@ -12,4 +12,5 @@ func InitRoutes(r *gin.RouterGroup, controller controller.UserControllerInterfac
 	r.POST("/user", controller.CreateUser)
 	r.PUT("/user/:userId", controller.UpdateUser)
 	r.DELETE("/user/:userId", controller.DeleteUser)
+	r.POST("/user/login", controller.LoginUser)
 }
