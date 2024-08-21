@@ -1,5 +1,7 @@
 package model
 
+import "github.com/FreitasGabriel/golang-crud/src/configuration/rest_err"
+
 type UserDomainInterface interface {
 	GetEmail() string
 	GetName() string
@@ -8,6 +10,7 @@ type UserDomainInterface interface {
 	GetID() string
 	SetID(string)
 	EncryptPassword()
+	GenerateToken() (string, *rest_err.RestErr)
 }
 
 func NewUserDomain(
