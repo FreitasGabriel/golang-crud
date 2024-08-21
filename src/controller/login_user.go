@@ -16,6 +16,7 @@ func (uc *userControlerInterface) LoginUser(c *gin.Context) {
 	logger.Info("Init loginUser controller", zap.String("journey", "loginUser"))
 
 	var userRequest request.UserLogin
+
 	if err := c.ShouldBindJSON(&userRequest); err != nil {
 		logger.Error("error trying to validate user info", err, zap.String("journey", "loginUser"))
 		restError := validation.ValidateUserError(err)
