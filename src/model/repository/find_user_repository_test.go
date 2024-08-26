@@ -5,7 +5,6 @@ import (
 	"testing"
 
 	"github.com/FreitasGabriel/golang-crud/src/configuration/logger"
-	"github.com/FreitasGabriel/golang-crud/src/model/repository"
 	"github.com/FreitasGabriel/golang-crud/src/model/repository/entity"
 	"github.com/stretchr/testify/assert"
 	"go.mongodb.org/mongo-driver/bson"
@@ -37,7 +36,7 @@ func TestUserRepository_FindUserByEmail(t *testing.T) {
 		))
 
 		databaseMock := mt.Client.Database(database_name)
-		repo := repository.NewUserRepository(databaseMock)
+		repo := NewUserRepository(databaseMock)
 		userDomain, err := repo.FindUserByEmail(userEntity.Email)
 
 		assert.Nil(t, err)
@@ -54,7 +53,7 @@ func TestUserRepository_FindUserByEmail(t *testing.T) {
 		})
 
 		databaseMock := mt.Client.Database(database_name)
-		repo := repository.NewUserRepository(databaseMock)
+		repo := NewUserRepository(databaseMock)
 		userDomain, err := repo.FindUserByEmail("tt@tt.com")
 
 		assert.NotNil(t, err)
@@ -69,7 +68,7 @@ func TestUserRepository_FindUserByEmail(t *testing.T) {
 		))
 
 		databaseMock := mt.Client.Database(database_name)
-		repo := repository.NewUserRepository(databaseMock)
+		repo := NewUserRepository(databaseMock)
 		userDomain, err := repo.FindUserByEmail("teste")
 
 		assert.NotNil(t, err)
@@ -101,7 +100,7 @@ func TestUserRepository_FindUserByID(t *testing.T) {
 		))
 
 		databaseMock := mt.Client.Database(database_name)
-		repo := repository.NewUserRepository(databaseMock)
+		repo := NewUserRepository(databaseMock)
 		userDomain, err := repo.FindUserByID(userEntity.ID.Hex())
 
 		assert.Nil(t, err)
@@ -118,7 +117,7 @@ func TestUserRepository_FindUserByID(t *testing.T) {
 		})
 
 		databaseMock := mt.Client.Database(database_name)
-		repo := repository.NewUserRepository(databaseMock)
+		repo := NewUserRepository(databaseMock)
 		userDomain, err := repo.FindUserByID("tt@tt.com")
 
 		assert.NotNil(t, err)
@@ -133,7 +132,7 @@ func TestUserRepository_FindUserByID(t *testing.T) {
 		))
 
 		databaseMock := mt.Client.Database(database_name)
-		repo := repository.NewUserRepository(databaseMock)
+		repo := NewUserRepository(databaseMock)
 		userDomain, err := repo.FindUserByID("teste")
 
 		assert.NotNil(t, err)
@@ -166,7 +165,7 @@ func TestUserRepository_FindUserByEmailAndPassword(t *testing.T) {
 		))
 
 		databaseMock := mt.Client.Database(database_name)
-		repo := repository.NewUserRepository(databaseMock)
+		repo := NewUserRepository(databaseMock)
 		userDomain, err := repo.FindUserByEmailAndPassword(userEntity.Email, userEntity.Password)
 
 		assert.Nil(t, err)
@@ -183,7 +182,7 @@ func TestUserRepository_FindUserByEmailAndPassword(t *testing.T) {
 		})
 
 		databaseMock := mt.Client.Database(database_name)
-		repo := repository.NewUserRepository(databaseMock)
+		repo := NewUserRepository(databaseMock)
 		userDomain, err := repo.FindUserByEmailAndPassword("tt@tt.com", "123123123")
 
 		assert.NotNil(t, err)
@@ -198,7 +197,7 @@ func TestUserRepository_FindUserByEmailAndPassword(t *testing.T) {
 		))
 
 		databaseMock := mt.Client.Database(database_name)
-		repo := repository.NewUserRepository(databaseMock)
+		repo := NewUserRepository(databaseMock)
 		userDomain, err := repo.FindUserByEmailAndPassword("teste@asdasd.com", "123")
 
 		assert.NotNil(t, err)
