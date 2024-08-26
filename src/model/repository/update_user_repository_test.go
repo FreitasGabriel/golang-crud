@@ -10,28 +10,26 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/integration/mtest"
 )
 
-func TestUserRepository_CreateUser(t *testing.T) {
-
+func TestUserRepository_UpdateUser(t *testing.T) {
 	mtestDb := TestUserRepository_InitTests(t)
 
-	mtestDb.Run("when_sending_a_valid_domain_returns_success", func(mt *mtest.T) {
+	mtestDb.Run("when_sending_a_valid_user_returns_success", func(mt *mtest.T) {
 		mt.AddMockResponses(bson.D{
 			{Key: "ok", Value: 1},
 			{Key: "n", Value: 1},
 			{Key: "acknowledged", Value: true},
 		})
+
 		databaseMock := mt.Client.Database(database_name)
 		repo := NewUserRepository(databaseMock)
-
-		userDomain, err := repo.CreateUser(model.NewUserDomain(
+		userDomain := model.NewUserDomain(
 			"test@test.com", "test", "test", 90,
-		))
+		)
+		userDomain.SetID(primitive.NewObjectID().Hex())
 
-		_, errId := primitive.ObjectIDFromHex(userDomain.GetID())
+		err := repo.UpdateUser(userDomain.GetID(), userDomain)
 
 		assert.Nil(t, err)
-		assert.Nil(t, errId)
-		assert.EqualValues(t, userDomain.GetEmail(), "test@test.com")
 	})
 
 	mtestDb.Run("return_error_from_Database", func(mt *mtest.T) {
@@ -41,11 +39,12 @@ func TestUserRepository_CreateUser(t *testing.T) {
 		databaseMock := mt.Client.Database(database_name)
 		repo := NewUserRepository(databaseMock)
 
-		userDomain, err := repo.CreateUser(model.NewUserDomain(
+		userDomain := model.NewUserDomain(
 			"test@test.com", "test", "test", 90,
-		))
+		)
+		userDomain.SetID(primitive.NewObjectID().Hex())
+		err := repo.UpdateUser(userDomain.GetID(), userDomain)
 
 		assert.NotNil(t, err)
-		assert.Nil(t, userDomain)
 	})
 }

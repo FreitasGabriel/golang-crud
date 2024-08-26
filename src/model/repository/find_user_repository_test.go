@@ -2,7 +2,6 @@ package repository
 
 import (
 	"fmt"
-	"os"
 	"testing"
 
 	"github.com/FreitasGabriel/golang-crud/src/configuration/logger"
@@ -14,14 +13,8 @@ import (
 )
 
 func TestUserRepository_FindUserByEmail(t *testing.T) {
-	err := os.Setenv("MONGODB_USER_DB", collection_name)
-	if err != nil {
-		t.FailNow()
-		return
-	}
-	defer os.Clearenv()
 
-	mtestDb := MockedDatabase(t)
+	mtestDb := TestUserRepository_InitTests(t)
 	mtestDb.Cleanup(func() {
 		logger.Info("closing database connection")
 	})
@@ -84,14 +77,8 @@ func TestUserRepository_FindUserByEmail(t *testing.T) {
 }
 
 func TestUserRepository_FindUserByID(t *testing.T) {
-	err := os.Setenv("MONGODB_USER_DB", collection_name)
-	if err != nil {
-		t.FailNow()
-		return
-	}
-	defer os.Clearenv()
 
-	mtestDb := MockedDatabase(t)
+	mtestDb := TestUserRepository_InitTests(t)
 	mtestDb.Cleanup(func() {
 		logger.Info("closing database connection")
 	})
@@ -155,14 +142,8 @@ func TestUserRepository_FindUserByID(t *testing.T) {
 }
 
 func TestUserRepository_FindUserByEmailAndPassword(t *testing.T) {
-	err := os.Setenv("MONGODB_USER_DB", collection_name)
-	if err != nil {
-		t.FailNow()
-		return
-	}
-	defer os.Clearenv()
 
-	mtestDb := MockedDatabase(t)
+	mtestDb := TestUserRepository_InitTests(t)
 	mtestDb.Cleanup(func() {
 		logger.Info("closing database connection")
 	})
