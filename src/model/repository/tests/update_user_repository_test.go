@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/FreitasGabriel/golang-crud/src/model"
+	"github.com/FreitasGabriel/golang-crud/src/model/repository"
 	"github.com/stretchr/testify/assert"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -21,7 +22,7 @@ func TestUserRepository_UpdateUser(t *testing.T) {
 		})
 
 		databaseMock := mt.Client.Database(database_name)
-		repo := NewUserRepository(databaseMock)
+		repo := repository.NewUserRepository(databaseMock)
 		userDomain := model.NewUserDomain(
 			"test@test.com", "test", "test", 90,
 		)
@@ -37,7 +38,7 @@ func TestUserRepository_UpdateUser(t *testing.T) {
 			{Key: "ok", Value: 0},
 		})
 		databaseMock := mt.Client.Database(database_name)
-		repo := NewUserRepository(databaseMock)
+		repo := repository.NewUserRepository(databaseMock)
 
 		userDomain := model.NewUserDomain(
 			"test@test.com", "test", "test", 90,

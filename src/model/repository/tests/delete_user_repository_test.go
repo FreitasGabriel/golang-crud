@@ -3,6 +3,7 @@ package repository
 import (
 	"testing"
 
+	"github.com/FreitasGabriel/golang-crud/src/model/repository"
 	"github.com/stretchr/testify/assert"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/integration/mtest"
@@ -18,7 +19,7 @@ func TestUserRepository_DeleteUser(t *testing.T) {
 			{Key: "acknowledged", Value: true},
 		})
 		databaseMock := mt.Client.Database(database_name)
-		repo := NewUserRepository(databaseMock)
+		repo := repository.NewUserRepository(databaseMock)
 
 		err := repo.DeleteUser("test")
 
@@ -30,7 +31,7 @@ func TestUserRepository_DeleteUser(t *testing.T) {
 			{Key: "ok", Value: 0},
 		})
 		databaseMock := mt.Client.Database(database_name)
-		repo := NewUserRepository(databaseMock)
+		repo := repository.NewUserRepository(databaseMock)
 
 		err := repo.DeleteUser("tes")
 
