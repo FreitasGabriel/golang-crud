@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/FreitasGabriel/golang-crud/src/configuration/rest_err"
-	"github.com/FreitasGabriel/golang-crud/src/configuration/tests/mocks"
+	"github.com/FreitasGabriel/golang-crud/src/configuration/tests/mock"
 	"github.com/FreitasGabriel/golang-crud/src/model"
 	"github.com/stretchr/testify/assert"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -17,7 +17,7 @@ func TestUserDomainService_FindUserByIDServices(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	repository := mocks.NewMockUserRepository(ctrl)
+	repository := mock.NewMockUserRepository(ctrl)
 	service := NewUserDomainService(repository)
 
 	t.Run("when_exists_an_user_returns_success", func(t *testing.T) {
@@ -52,7 +52,7 @@ func TestUserDomainService_FindUserByEmailServices(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	repository := mocks.NewMockUserRepository(ctrl)
+	repository := mock.NewMockUserRepository(ctrl)
 	service := NewUserDomainService(repository)
 
 	t.Run("when_exists_an_user_returns_success", func(t *testing.T) {
@@ -89,7 +89,7 @@ func TestUserDomainService_FindUserByEmailAndPasswordServices(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	repository := mocks.NewMockUserRepository(ctrl)
+	repository := mock.NewMockUserRepository(ctrl)
 	service := &userDomainService{repository}
 
 	t.Run("when_exists_an_user_returns_success", func(t *testing.T) {

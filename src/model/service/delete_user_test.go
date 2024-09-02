@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/FreitasGabriel/golang-crud/src/configuration/rest_err"
-	"github.com/FreitasGabriel/golang-crud/src/configuration/tests/mocks"
+	"github.com/FreitasGabriel/golang-crud/src/configuration/tests/mock"
 	"github.com/stretchr/testify/assert"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.uber.org/mock/gomock"
@@ -15,7 +15,7 @@ func TestUserDomainService_DeleteUserServices(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	repository := mocks.NewMockUserRepository(ctrl)
+	repository := mock.NewMockUserRepository(ctrl)
 	service := NewUserDomainService(repository)
 
 	t.Run("when_sending_a_valid_userId_returns_success", func(t *testing.T) {
