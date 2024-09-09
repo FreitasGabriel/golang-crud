@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 	"net/mail"
 
@@ -32,6 +33,7 @@ func (uc *userControlerInterface) FindUserById(c *gin.Context) {
 	if err != nil {
 		logger.Error("Error trying to call FindUserByEmail services", err, zap.String("journey", "FindUserByEmail"))
 		c.JSON(err.Code, err)
+		return
 	}
 
 	logger.Info("FindUserByEmail controller executed successfully", zap.String("jounrey", "FindUserByEmail"))
@@ -57,8 +59,10 @@ func (uc *userControlerInterface) FindUserByEmail(c *gin.Context) {
 	if err != nil {
 		logger.Error("Error trying to call FindUserByEmail services", err, zap.String("journey", "FindUserByEmail"))
 		c.JSON(err.Code, err)
+		return
 	}
 
 	logger.Info("FindUserByEmail controller executed successfully", zap.String("jounrey", "FindUserByEmail"))
+	fmt.Println(userDomain)
 	c.JSON(http.StatusOK, view.ConvertDomainToResponse(userDomain))
 }

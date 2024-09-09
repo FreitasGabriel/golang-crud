@@ -17,6 +17,7 @@ func (uc *userControlerInterface) DeleteUser(c *gin.Context) {
 	if _, err := primitive.ObjectIDFromHex(userId); err != nil {
 		errRest := rest_err.NewBadResquestError("invalid userId, must be a hex value")
 		c.JSON(errRest.Code, errRest)
+		return
 	}
 	err := uc.service.DeleteUser(userId)
 	if err != nil {
