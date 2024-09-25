@@ -169,4 +169,5 @@ func MakeRequest(
 	c.Request.Header.Set("Content-Type", "application/json")
 	c.Params = param
 	c.Request.URL.RawQuery = u.Encode()
+	c.Request.Body = body
 }
