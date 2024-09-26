@@ -13,6 +13,18 @@ import (
 	"go.uber.org/zap"
 )
 
+// FindUserByID retrieves user ionformation based on the provided user ID
+// @Summary Find user by id
+// @Description Retrieve user details based on the user ID provided as a parameter
+// @Tags Users
+// @Accept json
+// @Produce json
+// @Param userId path int tru "ID of the user to be retrieved"
+// @Param Authorization header string true "Insert your access token" default(Bearer <Add access token here>)
+// @Success 200 {object} response.UserResponse "User information retrieved successfully"
+// @Failure 400 {object} rest_err.RestErr "Error: invalid user ID"
+// @Failure 404 {object} rest_err.RestErr "Error: user not found"
+// @Router /user/id/{id} [get]
 func (uc *userControlerInterface) FindUserById(c *gin.Context) {
 
 	logger.Info("Init findUserByID controller", zap.String("journey", "findUserByID"))
@@ -40,6 +52,18 @@ func (uc *userControlerInterface) FindUserById(c *gin.Context) {
 	c.JSON(http.StatusOK, view.ConvertDomainToResponse(userDomain))
 }
 
+// FindUserByEmail retrieves user ionformation based on the provided user Email
+// @Summary Find user by Email
+// @Description Retrieve user details based on the user Email provided as a parameter
+// @Tags Users
+// @Accept json
+// @Produce json
+// @Param userId path int tru "Email of the user to be retrieved"
+// @Param Authorization header string true "Insert your access token" default(Bearer <Add access token here>)
+// @Success 200 {object} response.UserResponse "User information retrieved successfully"
+// @Failure 400 {object} rest_err.RestErr "Error: invalid user Email"
+// @Failure 404 {object} rest_err.RestErr "Error: user not found"
+// @Router /user/email/{id} [get]
 func (uc *userControlerInterface) FindUserByEmail(c *gin.Context) {
 	logger.Info("Init FindUserByEmail controller", zap.String("journey", "FindUserByEmail"))
 

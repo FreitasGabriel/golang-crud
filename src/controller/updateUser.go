@@ -13,6 +13,19 @@ import (
 	"go.uber.org/zap"
 )
 
+// UpdateUser Updates a user information with the specified ID
+// @Summary Update user
+// @Description Update user details based on the ID provided as a parameter
+// @Tags Users
+// @Accept json
+// @Produce json
+// @Param userId path int true "ID of the user to be updated"
+// @Param userRequest body request.UserUpdateRequest true "User ionformation for update"
+// @Param Authorization header string true "Insert your access token" default(Bearer <Add access token here>)
+// @Success 200
+// @Failure 400 {object} rest_err.RestErr
+// @Failure 500 {object} rest_err.RestErr
+// @Router /user/{id} [put]
 func (uc *userControlerInterface) UpdateUser(c *gin.Context) {
 
 	userId := c.Param("userId")
