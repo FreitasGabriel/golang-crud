@@ -2,7 +2,7 @@ FROM golang:1.21 AS BUILDER
 
 WORKDIR /app
 COPY src src
-# COPY docs docs
+COPY docs docs
 COPY go.mod go.mod
 COPY go.sum go.sum
 # COPY init_dependencies.go init_dependencies.go

@@ -5,7 +5,6 @@ import (
 	"github.com/FreitasGabriel/golang-crud/src/model"
 	"github.com/gin-gonic/gin"
 
-	_ "github.com/FreitasGabriel/golang-crud/docs"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
