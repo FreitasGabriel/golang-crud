@@ -37,7 +37,7 @@ func (ur *userRepository) FindUserByEmail(email string) (model.UserDomainInterfa
 
 		errMessage := "Error trying to find user by email"
 		logger.Error(errMessage, err, zap.String("journey", "findUserByEmail"))
-		return nil, rest_err.NewInternalServerError(errMessage)
+		return nil, rest_err.NewNotFoundError(errMessage)
 	}
 
 	logger.Info(
@@ -72,7 +72,7 @@ func (ur *userRepository) FindUserByID(id string) (model.UserDomainInterface, *r
 
 		errMessage := "Error trying to find user by id"
 		logger.Error(errMessage, err, zap.String("journey", "findUserByID"))
-		return nil, rest_err.NewInternalServerError(errMessage)
+		return nil, rest_err.NewNotFoundError(errMessage)
 	}
 
 	logger.Info(
